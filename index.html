@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0908">
+<meta name="description" content="水墨风声呐迷宫探索游戏：化作朱砂墨灵，以回声照见洞壁，躲避循声而来的墨影，收齐金墨后走入留白。">
+<title>回声洞 · 墨戏</title>
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='5' fill='%23c83828'/></svg>">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body class="loading">
+<canvas id="stage"></canvas>
+<div class="overlay" id="loadingScreen" aria-label="正在加载游戏素材">
+  <div class="loading-frame" role="status" aria-live="polite">
+    <div class="loading-wash" aria-hidden="true">
+      <span class="loading-ring r1"></span>
+      <span class="loading-ring r2"></span>
+      <span class="loading-ring r3"></span>
+    </div>
+    <div class="loading-seal" aria-hidden="true">声</div>
+    <div class="loading-kicker">回 声 洞 · 墨 戏</div>
+    <h1 class="loading-title">研 墨 入 卷</h1>
+    <p id="loadingLine">正在唤醒纸上万物</p>
+    <div class="loading-track" aria-hidden="true"><span id="loadingFill"></span></div>
+    <div class="loading-count"><span id="loadingStep">铺开宣纸 · 0 / 9</span><b id="loadingPct">0%</b></div>
+    <button class="load-retry" id="reloadAssetsBtn" hidden>重 新 载 入</button>
+  </div>
+  <div class="loading-foot">建议开启声音 · 戴耳机游玩</div>
+</div>
+<div id="hud">
+  <div class="hud-cell chapter">
+    <span class="hud-kicker">当前画卷</span>
+    第 <b id="lvNum">1</b> 页 · <b id="lvName">起笔</b>
+  </div>
+  <div class="hud-cell objective">
+    <span class="hud-kicker">本页目标</span>
+    <span class="gold">金墨 <b id="sporeGot">0</b>/<b id="sporeAll">0</b></span> · <span id="exitHint">留白未开</span>
+  </div>
+  <div class="hud-cell vitals">
+    <span><span class="hud-kicker">墨灵</span><span class="red" id="hpDisp">●●●</span></span>
+    <span>铃 <b id="bellLeft">3</b> · 诱 <b id="decoyLeft">2</b> · 冲<span id="dashCD"><span id="dashCDFill"></span></span>
+  </div>
+</div>
+<div id="combo"></div>
+<button id="muteBtn" aria-label="切换声音">声开</button>
+<button id="pauseBtn" aria-label="菜单">≡</button>
+<div id="touchControls">
+  <div class="touch-left">
+    <div id="joy"><div id="joyKnob"></div></div>
+    <button class="ctrl-btn" id="decoyBtn"><span class="ico">诱</span><span class="lab">诱饵</span></button>
+  </div>
+  <div class="touch-right">
+    <button class="ctrl-btn" id="dashBtn"><span class="ico">冲</span><span class="lab">冲刺</span></button>
+    <button class="ctrl-btn" id="bellBtn"><span class="ico">铃</span><span class="lab">摇铃</span></button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="startScreen">
+  <div class="start-shell">
+    <div class="start-index"><span>壹 · 入 卷</span><span class="ready">九件画材已就绪</span></div>
+    <div class="start-card">
+      <div class="title-column">
+        <img class="menu-spirit" src="assets/player-v2.png" alt="" aria-hidden="true">
+        <div class="seal">墨</div>
+        <div class="brush-title">回声洞</div>
+        <div class="brush-sub">墨 戏 · ECHO CAVERN</div>
+        <div class="desc">你是一点<span class="red">朱砂</span>，坠入墨色深处。脚步荡开回声，也会惊醒循声而来的墨影。看清路，藏住声，收齐金墨后归入留白。</div>
+        <div class="journey">
+          <span class="route-label">本 卷 目 标</span>
+          <strong>循声探路</strong><i>→</i><strong>收齐金墨</strong><i>→</i><strong>归入留白</strong>
+        </div>
+        <div class="quick-facts"><span>五页迷卷</span><span>三命一局</span><span>可离线游玩</span></div>
+      </div>
+      <div class="rule-column">
+        <div class="panel-heading"><b>入 洞 手 札</b><small>三种器法 · 一条活路</small></div>
+        <div class="eyebrow">以 声 见 路 · 以 静 藏 身</div>
+        <div class="skill-grid">
+          <div class="skill-card"><span class="mark">冲</span><b>朱砂冲</b><small>Shift / 冲键<br>穿影避伤，定影后击散</small></div>
+          <div class="skill-card"><span class="mark">铃</span><b>朱铃</b><small>空格 / 铃键<br>照亮近路，暂时定住墨影</small></div>
+          <div class="skill-card"><span class="mark">诱</span><b>墨石</b><small>Q / 诱键<br>制造假声，也可压住石板</small></div>
+        </div>
+        <div class="enemy-rule">读懂墨影：<b>？</b> 正在调查声源　<b class="red">！</b> 正在追击　<b class="gold">定</b> 可用冲刺击散。不要在死路连续发声。</div>
+        <div class="start-actions">
+          <button class="btn" id="startBtn" disabled><span>落 笔 入 洞</span><small>开始第一卷 · 起笔</small></button>
+        </div>
+        <div id="audioStatus">点击开始后将开启水墨配乐与音效</div>
+        <div class="hint">电脑 WASD 移动 · Shift 冲刺 · 空格摇铃 · Q 诱饵<br>手机 左侧移动与诱饵 · 右侧冲刺和摇铃</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="endScreen">
+  <div class="result-card">
+    <div id="endSeal">成</div>
+    <div id="endTitle">这 一 页 了</div>
+    <div id="endStats"></div>
+    <button class="btn" id="nextBtn">接 着 画</button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="pauseScreen">
+  <div class="pause-panel">
+    <div class="pause-title">停 笔</div>
+    <button class="menu-btn" id="resumeBtn">继 续 画</button>
+    <button class="menu-btn" id="restartBtn">重 画 此 页</button>
+    <button class="menu-btn" id="quitBtn">回 主 卷</button>
+    <button class="menu-btn" id="pauseMuteBtn">静 音</button>
+  </div>
+</div>
+
+<script src="./game.js"></script>
+</body>
+</html>
