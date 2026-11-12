@@ -1,36 +1,37 @@
-# 回声洞 · 墨戏
+[简体中文](README.zh-CN.md) · [English](README.md) · [日本語](README.ja.md)
 
-[![《回声洞 · 墨戏》横版海报](assets/echo-cavern-poster-4x3.png)](https://hbaopiqi.github.io/echo-cavern-moxi/)
+# Echo Cavern · Moxi / 回声洞 · 墨戏
 
-## 游戏简介
+[![Echo Cavern · Moxi poster](assets/echo-cavern-poster-4x3.png)](https://hbaopiqi.github.io/echo-cavern-moxi/)
 
-你是一点坠入墨色深处的朱砂。在几乎无光的洞窟中，脚步荡开的每一道回声既能照见岩壁，也会惊醒藏在黑暗里的墨影。
+## About the game
 
-《回声洞 · 墨戏》是一款水墨风声呐迷宫探索游戏。玩家需要用移动、朱铃、冲刺与墨石诱饵短暂显露道路，收集散落在五页迷卷中的金墨孢子，再从开启的留白出口脱身。墨影会巡逻、听声、追猎；发声越频繁，路径越清晰，危险也越近。游戏采用手绘国画素材、动态墨迹、五声音阶配乐与程序化迷宫，可在电脑和手机浏览器中直接游玩。
+You are a drop of vermilion falling into an ink-dark world. In a cavern with almost no light, every echo of your footsteps reveals the rock walls—and can awaken the ink shadows hiding in the darkness.
 
-## 在线游玩
+*Echo Cavern · Moxi* is an ink-wash maze exploration game built around sonar. Move, ring the vermilion bell, dash, and throw ink-stone decoys to reveal paths for a moment. Collect golden ink spores scattered across five maze scrolls, then escape through the blank-space exit that opens. Ink shadows patrol, listen, and hunt: the more sound you make, the clearer the path and the closer the danger. Hand-drawn Chinese ink-painting assets, flowing ink effects, pentatonic music, and procedurally generated mazes come together in a game playable directly in desktop and mobile browsers.
 
-- GitHub Pages：<https://hbaopiqi.github.io/echo-cavern-moxi/>
-- Sites 镜像：<https://echo-cavern-moxi.hbaopiqi.chatgpt.site>
+## Play online
 
-## 操作
+- GitHub Pages: <https://hbaopiqi.github.io/echo-cavern-moxi/>
+- Sites mirror: <https://echo-cavern-moxi.hbaopiqi.chatgpt.site>
 
-| 平台 | 移动 | 冲刺 | 朱铃 | 诱饵 | 暂停 |
+## Controls
+
+| Platform | Move | Dash | Vermilion bell | Decoy | Pause |
 | --- | --- | --- | --- | --- | --- |
-| 电脑 | WASD / 方向键 | Shift | 空格 | Q | Esc |
-| 手机 | 左侧摇杆 | 右侧冲刺键 | 右侧朱铃键 | 摇杆旁诱饵键 | 菜单键 |
+| Desktop | WASD / arrow keys | Shift | Space | Q | Esc |
+| Mobile | Left joystick | Dash button on the right | Bell button on the right | Decoy button beside the joystick | Menu button |
 
-戴上耳机体验更完整。首次点击“入洞”后，浏览器才会允许播放音乐和音效。
+Headphones bring out the full experience. Click “入洞” (enter the cavern) first to allow the browser to play music and sound effects. The game uses Chinese interface labels; the controls above explain the main actions.
 
-## 本地运行
+## Run locally
 
-直接打开 `index.html` 即可游玩。项目不需要后端，也不需要安装依赖。
+Open `index.html` directly to play. No backend application or dependency installation is required.
 
-## 美术与玩法
+## Art and gameplay
 
-- 手绘水墨角色、机关和洞窟素材
-- 程序化生成的五页迷宫
-- 会逐渐消退的朱铃显影、冲刺与诱饵
-- 巡逻和听声追猎两类敌人
-- 连击、评级、最佳时间和移动端触控适配
-
+- Hand-drawn ink-wash characters, mechanisms, and cavern assets
+- Five procedurally generated maze scrolls
+- Temporary path reveals from the bell, dashes, and decoys that gradually fade away
+- Patrolling enemies and enemies that hunt by sound
+- Combos, ratings, best-time records, and mobile touch controls
